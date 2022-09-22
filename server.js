@@ -61,4 +61,7 @@ app.delete('/api/students/:index', (req, res) => {
 
 const port = process.env.PORT || 5050
 
+
+app.use(rollbar.errorHandler())
+
 app.listen(port, () => console.log(`Server listening on ${port}`))
