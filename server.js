@@ -40,10 +40,10 @@ app.post('/api/students', (req, res) => {
            rollbar.log('Students added successfully')
            res.status(200).send(students)
        } else if (name === ''){
-            rollbar.warning('Students not added')
+            rollbar.warning.log('Students not added')
            res.status(400).send('You must enter a name.')
        } else {
-            rollbar.critical('Student already in arr')
+            rollbar.critical.log('Student already in arr')
            res.status(400).send('That student already exists.')
        }
    } catch (err) {
