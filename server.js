@@ -37,10 +37,13 @@ app.post('/api/students', (req, res) => {
    try {
        if (index === -1 && name !== '') {
            students.push(name)
+           rollbar.log('Students added successfully')
            res.status(200).send(students)
        } else if (name === ''){
+            rollbar.error('Students not added')
            res.status(400).send('You must enter a name.')
        } else {
+            rollbar.error('Student already in arr')
            res.status(400).send('That student already exists.')
        }
    } catch (err) {
@@ -52,6 +55,7 @@ app.delete('/api/students/:index', (req, res) => {
     const targetIndex = +req.params.index
     
     students.splice(targetIndex, 1)
+    rollbar.info('student was deleted')
     res.status(200).send(students)
 })
 
